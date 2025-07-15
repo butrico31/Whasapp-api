@@ -1,8 +1,9 @@
 # Usa imagem oficial do Node.js baseada no Debian
 FROM node:20-buster
 
-# Instalar dependências do sistema e o Chromium
-RUN apt-get update && apt-get install -y \
+# Instala as dependências necessárias
+RUN apt-get update && \
+    apt-get install -y \
     curl \
     gnupg \
     ca-certificates \
@@ -14,7 +15,6 @@ RUN apt-get update && apt-get install -y \
     libdbus-1-3 \
     libgdk-pixbuf2.0-0 \
     libnspr4 \
-    libnss3 \
     libx11-xcb1 \
     libxcomposite1 \
     libxrandr2 \
@@ -23,28 +23,24 @@ RUN apt-get update && apt-get install -y \
     libgtk-3-0 \
     xdg-utils \
     fonts-liberation \
+    chromium \
     --no-install-recommends && \
-    rm -rf /var/lib/apt/lists/* && \
-    # Baixar e instalar Chromium
-    curl -fsSL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o google-chrome-stable_current_amd64.deb && \
-    dpkg -i google-chrome-stable_current_amd64.deb && \
-    apt-get install -f -y && \
-    rm google-chrome-stable_current_amd64.deb
+    rm -rf /var/lib/apt/lists/*
 
-# Definir o caminho do Chromium
-ENV CHROMIUM_PATH=/usr/bin/google-chrome-stable
+# Define o caminho do Chromium
+ENV CHROMIUM_PATH=/usr/bin/chromium
 
-# Definir o diretório de trabalho no container
+# Define o diretório de trabalho
 WORKDIR /app
 
-# Copiar os arquivos do projeto
+# Copia os arquivos do projeto
 COPY . .
 
-# Instalar as dependências do projeto
+# Instala as dependências do projeto
 RUN npm install
 
 # Expor a porta 3000 (ajuste conforme seu projeto)
 EXPOSE 3000
 
-# Iniciar o aplicativo
+# Inicia o app
 CMD ["npm", "start"]
