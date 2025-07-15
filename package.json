@@ -1,5 +1,8 @@
 {
-  "type":"module",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^5.1.0",
