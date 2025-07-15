@@ -1,0 +1,36 @@
+import venom from 'venom-bot';
+import express from 'express';
+import venomRouter from './Routes/venomRouter.js';
+
+const app = express();
+
+
+app.use(express.json());
+
+let clientVenom = null;
+
+const initializeVenom = async () => {
+  try {
+    clientVenom = await venom.create({
+        headless: 'new',
+        session: 'session-name',
+        multidevice: true,
+    });
+    
+
+    console.log('Venom WhatsApp bot pronto!');
+  } catch (error) {
+    console.error('Erro ao inicializar Venom:', error);
+  }
+};
+
+app.use('/message', venomRouter);
+
+
+app.listen(3000, () => {
+    console.log('Server is running on port 3000');
+});
+
+initializeVenom()
+
+export { clientVenom };
