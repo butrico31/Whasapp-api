@@ -1,26 +1,33 @@
-# Usa imagem oficial do Node.js baseada em Alpine
-FROM node:20-alpine
+# Usa imagem oficial do Node.js baseada no Debian
+FROM node:20-buster
 
-# Instala dependências para o Chromium
-RUN apk update && \
-    apk add --no-cache \
+# Instala as dependências necessárias para o Chromium
+RUN apt-get update && \
+    apt-get install -y \
     chromium \
-    nss \
-    freetype \
-    harfbuzz \
-    ttf-freefont \
-    libx11 \
-    libxcomposite \
-    libxrandr \
-    libxi \
-    libxtst \
-    libglvnd \
-    && rm -rf /var/cache/apk/*
+    libnss3 \
+    libatk-bridge2.0-0 \
+    libatk1.0-0 \
+    libcups2 \
+    libdbus-1-3 \
+    libgdk-pixbuf2.0-0 \
+    libnspr4 \
+    libnss3 \
+    libx11-xcb1 \
+    libxcomposite1 \
+    libxrandr2 \
+    libgbm1 \
+    libpango-1.0-0 \
+    libgtk-3-0 \
+    xdg-utils \
+    wget \
+    --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/*
 
-# Define o caminho para o Chromium no ambiente
-ENV CHROMIUM_PATH=/usr/bin/chromium-browser
+# Define o caminho do Chromium
+ENV CHROMIUM_PATH=/usr/bin/chromium
 
-# Define o diretório de trabalho
+# Diretório de trabalho no container
 WORKDIR /app
 
 # Copia os arquivos do projeto
