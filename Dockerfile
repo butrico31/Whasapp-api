@@ -1,48 +1,35 @@
-# Usa a imagem oficial do Node.js
-FROM node:20
+# Usa imagem oficial do Node.js baseada em Alpine
+FROM node:20-alpine
 
-# Instala dependências para Chromium
-RUN apt-get update && \
-    apt-get install -y \
-    wget \
-    ca-certificates \
-    fontconfig \
-    libxss1 \
-    libappindicator3-1 \
-    libasound2 \
-    libatk-bridge2.0-0 \
-    libatk1.0-0 \
-    libcups2 \
-    libdbus-1-3 \
-    libgdk-pixbuf2.0-0 \
-    libnspr4 \
-    libnss3 \
-    libx11-xcb1 \
-    libxcomposite1 \
-    libxrandr2 \
-    libgbm1 \
-    libpango-1.0-0 \
-    libgtk-3-0 \
-    xdg-utils \
-    curl \
-    --no-install-recommends && \
-    rm -rf /var/lib/apt/lists/* && \
-    # Instala o repositório do Google Chrome e instala o Chrome
-    curl -fsSL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o google-chrome-stable_current_amd64.deb && \
-    dpkg -i google-chrome-stable_current_amd64.deb && \
-    apt-get install -f -y && \
-    rm google-chrome-stable_current_amd64.deb
+# Instala dependências para o Chromium
+RUN apk update && \
+    apk add --no-cache \
+    chromium \
+    nss \
+    freetype \
+    harfbuzz \
+    ttf-freefont \
+    libx11 \
+    libxcomposite \
+    libxrandr \
+    libxi \
+    libxtst \
+    libglvnd \
+    && rm -rf /var/cache/apk/*
 
-# Diretório de trabalho no container
+# Define o caminho para o Chromium no ambiente
+ENV CHROMIUM_PATH=/usr/bin/chromium-browser
+
+# Define o diretório de trabalho
 WORKDIR /app
 
 # Copia os arquivos do projeto
 COPY . .
 
-# Instala as dependências
+# Instala as dependências do projeto
 RUN npm install
 
-# Expõe a porta
+# Expõe a porta (ajuste conforme necessário)
 EXPOSE 3000
 
 # Inicia o app
