@@ -1,7 +1,7 @@
 # Usa a imagem oficial do Node.js
 FROM node:20
 
-# Instala o Chromium e dependências
+# Instala dependências para Chromium
 RUN apt-get update && \
     apt-get install -y \
     wget \
@@ -24,12 +24,13 @@ RUN apt-get update && \
     libpango-1.0-0 \
     libgtk-3-0 \
     xdg-utils \
+    curl \
     --no-install-recommends && \
     rm -rf /var/lib/apt/lists/* && \
-    # Baixa o Chromium
-    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
+    # Instala o repositório do Google Chrome e instala o Chrome
+    curl -fsSL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o google-chrome-stable_current_amd64.deb && \
     dpkg -i google-chrome-stable_current_amd64.deb && \
-    apt-get install -f && \
+    apt-get install -f -y && \
     rm google-chrome-stable_current_amd64.deb
 
 # Diretório de trabalho no container
