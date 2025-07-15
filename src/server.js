@@ -18,7 +18,8 @@ const initializeVenom = async () => {
         multidevice: true,
         puppeteerOptions:{
           executablePath:await Chromium.executablePath,
-        }
+        },
+        protocolTimeout: 60000
     });
     
 
