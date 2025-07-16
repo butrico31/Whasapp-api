@@ -1,7 +1,6 @@
 import venom from 'venom-bot';
 import express from 'express';
 import venomRouter from './Routes/venomRouter.js';
-import Chromium from 'chrome-aws-lambda';
 
 const app = express();
 
