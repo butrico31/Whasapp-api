@@ -1,4 +1,4 @@
-import venom from 'venom-bot';
+import { create } from 'venom-bot';
 import express from 'express';
 import venomRouter from './Routes/venomRouter.js';
 
@@ -9,16 +9,15 @@ app.use(express.json());
 
 
 
-const clientVenom = await venom.create({
+const clientVenom = await create({
   headless: 'new',
   session: 'session-name',
   multidevice: true,
   puppeteerOptions: {
     timeout: 60000,
   },
-  killProcessOnBrowserClose: true,
-  createPathFileToken: true,
 });
+
 
 app.use((req, res, next) => {
   req.clientVenom = clientVenom;
