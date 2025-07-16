@@ -21,16 +21,6 @@ const clientVenom = await venom.create({
         
     });
 
-const initializeVenom = async () => {
-  try {
-    
-    
-
-    console.log('Venom WhatsApp bot pronto!');
-  } catch (error) {
-    console.error('Erro ao inicializar Venom:', error);
-  }
-};
 
 app.use('/message', venomRouter);
 
