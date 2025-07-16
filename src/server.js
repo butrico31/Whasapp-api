@@ -20,8 +20,10 @@ const clientVenom = await create({
     '--no-sandbox',
     '--disable-setuid-sandbox',
     '--disable-dev-shm-usage',
-    
+
   ]
+}, ()=>{
+  console.log('Client is ready!');
 });
 
 
