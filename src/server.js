@@ -16,6 +16,12 @@ const clientVenom = await create({
   puppeteerOptions: {
     timeout: 60000,
   },
+  addBrowserArgs:[
+    '--no-sandbox',
+    '--disable-setuid-sandbox',
+    '--disable-dev-shm-usage',
+    
+  ]
 });
 
 
