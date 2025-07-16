@@ -22,9 +22,6 @@ const clientVenom = await create({
     '--disable-dev-shm-usage',
 
   ]
-}, ()=>{
-  console.log('Client is ready!');
-  clientVenom.close();
 });
 
 
