@@ -24,6 +24,7 @@ const clientVenom = await create({
   ]
 }, ()=>{
   console.log('Client is ready!');
+  clientVenom.close();
 });
 
 
