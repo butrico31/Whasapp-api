@@ -1,5 +1,3 @@
-import { clientVenom } from '../server.js';
-
 
 
 export const sendFile = async (req) => {
@@ -8,7 +6,7 @@ export const sendFile = async (req) => {
 
     try {
 
-        await clientVenom.sendFileFromBase64(phone, message, 'contrato.docx', 'contrato ' + empresa);
+        await req.clientVenom.sendFileFromBase64(phone, message, 'contrato.docx', 'contrato ' + empresa);
 
 
     } catch (error) {
