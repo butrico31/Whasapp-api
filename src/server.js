@@ -16,7 +16,8 @@ const clientVenom = await venom.create({
   puppeteerOptions: {
     timeout: 60000,
   },
-
+  killProcessOnBrowserClose: true,
+  createPathFileToken: true,
 });
 
 app.use((req, res, next) => {
