@@ -8,11 +8,9 @@ const app = express();
 
 app.use(express.json());
 
-let clientVenom = null;
 
-const initializeVenom = async () => {
-  try {
-    clientVenom = await venom.create({
+
+const clientVenom = await venom.create({
         headless: 'new',
         session: 'session-name',
         multidevice: true,
@@ -22,6 +20,10 @@ const initializeVenom = async () => {
         },
         
     });
+
+const initializeVenom = async () => {
+  try {
+    
     
 
     console.log('Venom WhatsApp bot pronto!');
@@ -37,6 +39,5 @@ app.listen(3000,'0.0.0.0', () => {
     console.log('Server is running on port 3000');
 });
 
-initializeVenom()
 
 export { clientVenom };
