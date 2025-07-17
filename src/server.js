@@ -9,11 +9,10 @@ app.use(express.json());
 
 
 
-const clientVenom = create({
+const clientVenom = await create({
   headless: 'new',
   session: 'session-name',
   multidevice: true,
-  disableWelcome: true,
 });
 
 
