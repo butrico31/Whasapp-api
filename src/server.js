@@ -14,15 +14,6 @@ const clientVenom = await create({
   session: 'session-name',
   multidevice: true,
   disableWelcome: true,
-  addBrowserArgs:[
-    '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--disable-dev-shm-usage',
-      '--disable-accelerated-2d-canvas',
-      '--disable-gpu',
-      '--no-zygote',
-
-  ]
 });
 
 
