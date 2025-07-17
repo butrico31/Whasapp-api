@@ -21,7 +21,7 @@ const clientVenom = await create({
       '--disable-accelerated-2d-canvas',
       '--disable-gpu',
       '--no-zygote',
-      '--single-process'
+
   ]
 });
 
