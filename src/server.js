@@ -16,12 +16,12 @@ const clientVenom = await create({
   disableWelcome: true,
   addBrowserArgs:[
     '--no-sandbox',
-    '--disable-setuid-sandbox',
-    '--disable-dev-shm-usage',
-    '--disable-accelerated-2d-canvas',
-    '--no-zygote',
-    '--single-process',
-    '--disable-gpu'
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
+      '--disable-accelerated-2d-canvas',
+      '--disable-gpu',
+      '--no-zygote',
+      '--single-process'
   ]
 });
 
