@@ -13,14 +13,15 @@ const clientVenom = await create({
   headless: 'new',
   session: 'session-name',
   multidevice: true,
-  puppeteerOptions: {
-    timeout: 60000,
-  },
+  disableWelcome: true,
   addBrowserArgs:[
     '--no-sandbox',
     '--disable-setuid-sandbox',
     '--disable-dev-shm-usage',
-
+    '--disable-accelerated-2d-canvas',
+    '--no-zygote',
+    '--single-process',
+    '--disable-gpu'
   ]
 });
 
