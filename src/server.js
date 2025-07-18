@@ -1,4 +1,4 @@
-import { create } from 'venom-bot';
+import venom from 'venom-bot';
 import express from 'express';
 import venomRouter from './Routes/venomRouter.js';
 
@@ -8,11 +8,11 @@ const app = express();
 app.use(express.json());
 
 
-
-const clientVenom = await create({
+const clientVenom = await venom.create({
   headless: 'new',
   session: 'session-name',
-  multidevice: true,
+  statusFind: true,
+  logQR: true, 
 });
 
 

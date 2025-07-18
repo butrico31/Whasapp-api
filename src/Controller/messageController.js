@@ -1,4 +1,4 @@
-import { sendFile } from "../Service/messageService.js"
+import { sendFile, sendMessage } from "../Service/messageService.js"
 
 
 export const file = async (req, res) => {
@@ -10,4 +10,14 @@ export const file = async (req, res) => {
         res.status(500).send(error.message);
     }
     
+}
+
+export const message = async (req, res) => {
+    try{
+        await sendMessage(req);
+        res.status(200).send('Message sent successfully');
+    }
+    catch (error) {
+        res.status(500).send(error.message);
+    }
 }

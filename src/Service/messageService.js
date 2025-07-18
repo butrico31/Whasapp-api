@@ -14,3 +14,17 @@ export const sendFile = async (req) => {
         throw Error('Failed to send message');
     }
 }
+
+export const sendMessage = async (req) => {
+    const { phone, message, empresa } = req.body;
+
+    try {
+
+        await req.clientVenom.sendText(phone, message);
+
+
+    } catch (error) {
+        console.error('Error sending message:', error);
+        throw Error('Failed to send message');
+    }
+}
