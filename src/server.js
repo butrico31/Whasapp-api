@@ -11,7 +11,6 @@ app.use(express.json());
 const clientVenom = await venom.create({
   headless: 'new',
   session: 'session-name',
-  statusFind: true,
   logQR: true, 
 });
 
