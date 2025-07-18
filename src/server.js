@@ -14,6 +14,7 @@ async function initializeClient() {
   clientVenom = await venom.create({
   headless: 'new',
   session: 'session-name', 
+  autoClose:false,
   browserArgs: [
     '--no-sandbox',
     '--disable-setuid-sandbox',
