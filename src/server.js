@@ -8,25 +8,25 @@ const app = express();
 app.use(express.json());
 
 
-const clientVenom = await venom.create({
-  headless: 'new',
-  session: 'session-name',
-  logQR: true, 
-});
+let clientVenom;
 
-//reintanciando o cliente venom caso ele caia
-clientVenom.onStateChange(async (state) => {
-  console.log(state);
-  if (state === 'CONFLICT' || state === 'UNLAUNCHED') {
-    clientVenom.close();
-    
-    clientVenom = await venom.create({
-      headless: 'new',
-      session: 'session-name',
-      logQR: true,
-    })
-  }
+async function initializeClient() {
+  clientVenom = await venom.create({
+  headless: 'new',
+  session: 'session-name', 
+  browserArgs: [
+    '--no-sandbox',
+    '--disable-setuid-sandbox',
+    '--disable-dev-shm-usage',
+    '--disable-accelerated-2d-canvas',
+    '--no-zygote',
+    '--single-process',
+    '--disable-gpu',
+  ],
 });
+}
+
+await initializeClient();
 
 
 app.use((req, res, next) => {
