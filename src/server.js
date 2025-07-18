@@ -16,9 +16,10 @@ const clientVenom = await venom.create({
 
 //reintanciando o cliente venom caso ele caia
 clientVenom.onStateChange(async (state) => {
+  console.log(state);
   if (state === 'CONFLICT' || state === 'UNLAUNCHED') {
     clientVenom.close();
-    console.log(state);
+    
     clientVenom = await venom.create({
       headless: 'new',
       session: 'session-name',
