@@ -5,7 +5,7 @@ export const sendFile = async (req) => {
     
 
     try {
-
+        console.log(req.clientVenom, req.clientVenom.isConnected());
         await req.clientVenom.sendFileFromBase64(phone, message, 'contrato.docx', 'contrato ' + empresa);
 
 
@@ -19,7 +19,7 @@ export const sendMessage = async (req) => {
     const { phone, message, empresa } = req.body;
 
     try {
-
+        console.log(req.clientVenom, req.clientVenom.isConnected());
         await req.clientVenom.sendText(phone, message);
 
 
