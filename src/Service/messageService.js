@@ -19,7 +19,7 @@ export const sendMessage = async (req) => {
     const { phone, message, empresa } = req.body;
 
     try {
-        console.log(req.clientVenom, req.clientVenom.isConnected());
+        console.log(req.clientVenom, await req.clientVenom.isConnected());
         await req.clientVenom.sendText(phone, message);
 
 
