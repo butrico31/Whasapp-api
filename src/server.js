@@ -15,6 +15,9 @@ async function initializeClient() {
   headless: 'new',
   session: 'session-name', 
   autoClose:false,
+  puppeteerOptions:{
+    timeout: 0,
+  },
   browserArgs: [
     '--no-sandbox',
     '--disable-setuid-sandbox',
